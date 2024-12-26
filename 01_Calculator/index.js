@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', e => {
 })
 
 function calDisplay(){
-  let calculate = [];
   let result = 0;
   let operator = [];
   
@@ -17,9 +16,6 @@ function calDisplay(){
   
   // 2. C 버튼 클릭시 초기화
   document.querySelector('.button-clear').addEventListener('click', e => {
-    e.preventDefault();
-    document.getElementById('display').value = '';
-    calculate = [];
     operator = [];
     result = 0;
     display.value = 0;
@@ -28,13 +24,8 @@ function calDisplay(){
   document.querySelectorAll('.button').forEach((ele) => {
     ele.value = ele.innerHTML;
     ele.addEventListener('click', e => {
-      
       if(!isNaN(Number(e.target.value))){// 1. 숫자 버튼 클릭시 input에 클릭한 숫자 보여주기
-        // 0 누르고 . 누를 경우 소수점 사칙연산 
-        // 초기 0에서 숫자 누를경우 앞에 0제거
-        if(display.value === '0'){
-          display.value = '';
-        }
+        display.value = '';
         display.value += Number(e.target.value);
         
       } else {
@@ -43,7 +34,6 @@ function calDisplay(){
         if(e.target.value !== '='){
           operator.push(e.target.value);
           result = Number(number);
-          display.value = ''; 
           
         } else { // 4. = 버튼 클릭시 결과 보여주기
           switch(operator.pop()){ // 3. 사칙연산 버튼 클릭시 그에 해당하는 연산하기
